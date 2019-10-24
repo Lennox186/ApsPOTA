@@ -1,32 +1,22 @@
 package br.com.sort.merge;
 
-import static br.com.sort.Vetor.printVetor;
 import static br.com.sort.Vetor.randomVetor;
 
 public class MergeSort {
-    public static void main(String[] args) {
-
-        int[] vet = randomVetor(10);
-
-        System.out.println("Vetor Old");
-        printVetor(vet);
-
-        mergeSort(vet, 0,vet.length-1);
+    public static int cont1 = 0;
+    public static int cont2 = 0;
 
 
-        System.out.println("\nVetor New");
-        printVetor(vet);
-    }
-
-    public static void mergeSort(int[] vet, int start, int end) {
+    public static int mergeSort(int[] vet, int start, int end) {
 
         if (start < end) {
+            ++cont2;
             int mid = ((start + end) / 2);
             mergeSort(vet, start, mid);
             mergeSort(vet, mid + 1, end);
             intercala(vet, start, mid, end);
         }
-
+        return cont1 + cont2;
     }
 
     public static void intercala(int[] vet, int start, int mid, int end) {
@@ -44,13 +34,16 @@ public class MergeSort {
         int j = end;
         for (int k = start; k <= end; k++) {
             if (vetB[i] <= vetB[j]) {
+                ++cont1;
                 vet[k] = vetB[i];
                 i++;
             } else {
+                ++cont1;
                 vet[k] = vetB[j];
                 j--;
             }
         }
+
     }
 }
 
